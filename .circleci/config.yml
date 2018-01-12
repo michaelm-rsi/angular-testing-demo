@@ -27,10 +27,11 @@ jobs:
       - run: sudo webdriver-manager update
       - run:  yarn install
       - run: ng set --global warnings.versionMismatch=false
+      - run:
+          name: Webserver Start
+          command: ng serve
+          background: true
 
       #Test!
       - run: ng test --watch=false
-      - run: ng serve &
-      # Give Angular ample time to boot.
-      - run: sleep 30
       - run: protractor
