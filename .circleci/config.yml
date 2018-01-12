@@ -11,12 +11,12 @@ jobs:
 
     steps:
       # Pre Checkout
-      - run: google-chrome --version
+      #- run: google-chrome --version
       - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
       - run: sudo sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
       - run: sudo apt-get update
       - run: sudo apt-get --only-upgrade install google-chrome-stable
-      - run: google-chrome --version
+      #- run: google-chrome --version
 
       - checkout
 
@@ -29,5 +29,5 @@ jobs:
 
       #Test!
       - run: ng test --watch=false
-      - run: ng serve --watch=false
+      - run: ng serve &
       - run: protractor
