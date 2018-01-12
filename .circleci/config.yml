@@ -12,8 +12,8 @@ jobs:
     steps:
       # Pre Checkout
       - run: google-chrome --version
-      - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub50 | sudo apt-key add -
-      - run: sudo sh -c ‘echo “deb [arch=amd64] http://dl.google.com/linux/chrome/deb/26 stable main” >> /etc/apt/sources.list.d/google.list’
+      - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+      - run: sudo sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
       - run: sudo apt-get update
       - run: sudo apt-get --only-upgrade install google-chrome-stable
       - run: google-chrome --version
