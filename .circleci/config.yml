@@ -17,14 +17,14 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get --only-upgrade install google-chrome-stable
       - run: google-chrome --version
-      - run: sudo webdriver-manager update
 
       - checkout
 
       #Post Checkout, pre Test tasks
       - run: sudo yarn global add @angular/cli
-      - run: sudo yarn global add protractor
       - run: sudo ng set --global packageManager=yarn
+      - run: sudo yarn global add protractor
+      - run: sudo webdriver-manager update
       - run:  yarn install
 
       #Test!
