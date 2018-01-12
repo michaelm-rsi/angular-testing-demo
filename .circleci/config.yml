@@ -30,7 +30,7 @@ jobs:
       - run: sudo yarn global add protractor
       - run: sudo ng set --global packageManager=yarn
       - run: yarn install
-      - run: webdriver-manager update
+      - run: sudo webdriver-manager update
 
       - save_cache:
           paths:
