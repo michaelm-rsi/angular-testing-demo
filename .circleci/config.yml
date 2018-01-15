@@ -25,7 +25,7 @@ jobs:
       - run: sudo yarn global add @angular/cli
       - run: sudo ng set --global packageManager=yarn
       - run: sudo yarn global add protractor
-      - run: sudo yarn install browserstack-local
+      - run: sudo yarn add browserstack-local
       #- run: sudo webdriver-manager update
       - run:  yarn install
       - run: ng set --global warnings.versionMismatch=false
