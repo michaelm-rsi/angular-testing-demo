@@ -14,6 +14,7 @@ jobs:
       # Protractor needs Google Chrome version 62 minimum. Unfortunately CircleCI's
       # image has version 60. So we need to step through the update process to get the
       # latest Chrome.
+      #
       - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
       - run: sudo sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
       - run: sudo apt-get update
