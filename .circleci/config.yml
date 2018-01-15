@@ -2,43 +2,43 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+# This file is optimized for use with Angular 2+ with testing support using Gherkin
+# and end to end testing performed via BrowserStack.
 version: 2
 jobs:
   build:
     working_directory: ~/repo
     docker:
+      # Karma requires the local image to have a browser.
       - image: circleci/node:7.10-browsers
-
     steps:
-      # Pre Checkout
-      # Protractor needs Google Chrome version 62 minimum. Unfortunately CircleCI's
-      # image has version 60. So we need to step through the update process to get the
-      # latest Chrome.
-      #- run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-      #- run: sudo sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-      #- run: sudo apt-get update
-      #- run: sudo apt-get --only-upgrade install google-chrome-stable
-
       - checkout
 
-      #Post Checkout, pre Test tasks
-      - run: sudo yarn global add @angular/cli
-      - run: sudo ng set --global packageManager=yarn
-      - run: sudo yarn global add protractor
-      #- run: sudo yarn global add cucumber
-      #- run: sudo yarn add protractor-cucumber-framework
-      #- run: sudo yarn add browserstack-local
-      #- run: sudo webdriver-manager update
-      - run:  yarn install
-      - run: ng set --global warnings.versionMismatch=false
       - run:
-          name: Webserver Start
+          name: Setup Angular Command Line
+          command: sudo yarn global add @angular/cli
+      - run:
+          name: Set Angular CLI to use yarn for package management
+          command: sudo ng set --global packageManager=yarn
+      - run:
+          name: Suppress unwanted version mismatch error message
+          command: ng set --global warnings.versionMismatch=false
+      - run:
+          name: Set Protractor to run globally
+          command: sudo yarn global add protractor
+      - run:  yarn install
+      - run:
+          name: Start the node webserver and place it in the background as a service.
           command: ng serve
           background: true
 
-      #Tests - Start with the Linting syntax test.
-      - run: ng lint
-      # Karma tests
-      - run: ng test --watch=false
-      #Now the Protractor end to end test.
-      - run: protractor
+      #Begin Tests
+      - run:
+          name: JS Lint code inspection
+          command: ng lint
+      - run:
+          name: Karma Unit Tests
+          command: ng test --watch=false
+      - run:
+          name: Protractor End to End tests using Cucumber & Gherkin
+          command: protractor
