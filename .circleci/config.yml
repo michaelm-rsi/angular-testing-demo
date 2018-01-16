@@ -24,13 +24,8 @@ jobs:
           name: Suppress unwanted version mismatch error message
           command: ng set --global warnings.versionMismatch=false
       - run:
-          name: Set Protractor to run globally
-          command: sudo yarn global add protractor
-      - run:  yarn install
-      - run:
-          name: Start the node webserver and place it in the background as a service.
-          command: ng serve
-          background: true
+          name: Parse the package.json and do all installs
+          command: yarn install
 
       #Begin Tests
       - run:
@@ -41,4 +36,4 @@ jobs:
           command: ng test --watch=false
       - run:
           name: Protractor End to End tests using Cucumber & Gherkin
-          command: protractor
+          command: ng e2e
