@@ -4,6 +4,7 @@
 #
 # This file is optimized for use with Angular 2+ with testing support using Gherkin
 # and end to end testing performed via BrowserStack.
+#
 version: 2
 jobs:
   build:
