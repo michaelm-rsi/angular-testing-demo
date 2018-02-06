@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 # This file is optimized for use with Angular 2+ with testing support using Gherkin
-# and end to end testing performed via BrowserStack...
+# and end to end testing performed via BrowserStack.
 #
 version: 2
 jobs:
